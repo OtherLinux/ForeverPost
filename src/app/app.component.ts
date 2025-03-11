@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import {NgOptimizedImage} from '@angular/common';
+import {PostsComponent} from './Pages/posts/posts.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
+  imports: [RouterOutlet,NgOptimizedImage, PostsComponent, RouterLink],
 })
 export class AppComponent {
-  title = 'TheWallLocal';
+  title = 'Forever Post';
+  logoSrc = './img.png';
 }

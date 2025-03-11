@@ -1,0 +1,11 @@
+<section class="Post" (mouseover)="onFormInteraction(1)"
+      (mouseout)="onFormInteraction(-1)">
+  <div>
+    <span (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
+           class="DisplayName"></span>
+    <br>
+    <span (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
+              class="MessageContents" style="resize: none"></span>
+  </div>
+
+</section>
