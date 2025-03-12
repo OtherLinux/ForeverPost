@@ -5,6 +5,9 @@
   <title>Title</title>
 </head>
 <body>
-<app-post-creation></app-post-creation>
+<app-post-creation (formHandling)="onFormInteraction($event)" ></app-post-creation>
+<section id="Posts">
+  <app-post *ngFor="let post of shownPosts" [postData]="post"></app-post>
+</section>
 </body>
 </html>

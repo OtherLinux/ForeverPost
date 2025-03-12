@@ -5,12 +5,12 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   selector: 'app-post-creation',
   imports: [ReactiveFormsModule],
   template: `
-    <form id="PostCreationForm" [formGroup]="postCreation" [class.PostCreationExpand]="isExpanded"
+    <form id="PostCreationForm" [formGroup]="postCreation" [class.PostCreationExpand]="isExpanded" autocomplete="off"
           (ngSubmit)="onFormSend()" (mouseover)="onFormInteraction(1)"
           (mouseout)="onFormInteraction(-1)">
       <div>
         <input (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)" placeholder="Display Name"
-               id="DisplayName" type="text" formControlName="displayName">
+               id="DisplayName" type="text" formControlName="displayName" maxlength="32">
 
         <br>
         <textarea (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)" placeholder="Text goes here..."
@@ -29,25 +29,29 @@ export class PostCreationComponent {
   isExpanded = false;
   holders = 0;
   postCreation = new FormGroup({
-    displayName: new FormControl('', Validators.required),
+    displayName: new FormControl('',),
     message: new FormControl('', Validators.required),
   });
 
 
-  onFormInteraction(add:number) {
-    this.holders+=add
+  onFormInteraction(add: number) {
+    this.holders += add
     if (this.holders > 0) {
       this.isExpanded = true;
-    }else {
+    } else {
       this.isExpanded = false;
     }
   };
-  @Output() FormHandling = new EventEmitter();
+
+  @Output() formHandling = new EventEmitter();
 
   onFormSend() {
-    this.FormHandling.emit(this.postCreation);
-  }
+    if (this.postCreation.valid) {
+      this.formHandling.emit(this.postCreation);
+      this.postCreation.reset()
 
+    }
+  }
 
 
 }

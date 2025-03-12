@@ -1,11 +1,16 @@
 <section class="Post" (mouseover)="onFormInteraction(1)"
-      (mouseout)="onFormInteraction(-1)">
+         (mouseout)="onFormInteraction(-1)" [class.PostCreationExpand]="isExpanded">
   <div>
-    <span (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
-           class="DisplayName"></span>
-    <br>
-    <span (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
-              class="MessageContents" style="resize: none"></span>
-  </div>
+    <article>
+      <span (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
+          class="DisplayName"> {{ postData.displayName }}</span>
+      <span class="PostId">ID: {{postData.id}}</span>
 
+    </article>
+    <br>
+    <p (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
+          class="MessageContents" [textContent]="postData.message"> </p>
+    <br>
+    <span class="CreationDate">Created on: {{postData.creationDate.toDateString()}}</span>
+  </div>
 </section>
