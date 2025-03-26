@@ -28,14 +28,14 @@ export class PostsComponent {
   ];
 
   onFormInteraction(formData: FormGroup) {
-    let postContents = {
+    let postContents:PostData = {
       id: this.id,
       creationDate: new Date(),
       displayName: formData.value.displayName,
       message: formData.value.message,
       nsfw: false,
     };
-    if (postContents.displayName === ""|| postContents.displayName === null) {
+    if (postContents.displayName === "" || postContents.displayName === null) {
       postContents.displayName = "Anonymous";
     }
     this.id+=1

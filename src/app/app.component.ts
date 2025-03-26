@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import {RouterOutlet, RouterLink, RouterLinkActive} from '@angular/router';
 import {NgOptimizedImage} from '@angular/common';
 import {PostsComponent} from './Pages/posts/posts.component';
 
@@ -7,7 +7,7 @@ import {PostsComponent} from './Pages/posts/posts.component';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [RouterOutlet,NgOptimizedImage, PostsComponent, RouterLink],
+  imports: [RouterOutlet, NgOptimizedImage, PostsComponent, RouterLink, RouterLinkActive],
 })
 export class AppComponent {
   title = 'Forever Post';

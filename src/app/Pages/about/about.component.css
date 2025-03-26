@@ -1,0 +1,54 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  h1 {
+    font-size: 6rem;
+    margin: 1rem;
+  }
+
+  section {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4rem;
+    position: relative;
+    width: 80%;
+  height: 20rem;
+    article {
+      backdrop-filter: none;
+      img {
+        position: relative;
+        width: 4rem;
+        height: 4rem;
+      }
+      div {
+        display: flex;
+        flex-direction: row;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        h2 {
+          margin: 0rem;
+        }
+      }
+      span {
+        font-size: 1.4rem;
+      }
+      transition: 150ms all;
+      width: 90%;
+      height: 75%;
+      padding: 1rem;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid darkgray;
+    }
+    article:hover {
+      backdrop-filter: blur(5px);
+    }
+  }
+  #why {
+  }
+}

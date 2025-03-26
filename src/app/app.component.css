@@ -87,6 +87,10 @@ header {
   }
 }
 
+.active {
+  font-weight: bold !important;
+}
+
 #Content-Display {
   margin-top: 0rem;
   padding-top: 10rem;

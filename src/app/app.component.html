@@ -8,10 +8,10 @@
 <header>
   <nav>
     <ul id="Left-Nav-Bar">
-      <li><a routerLink=""><h2 id="Brand-Name"> {{ title }} </h2></a></li>
-      <li><a routerLink="About" class="pages">About</a></li>
-      <li><a class="pages">Search</a></li>
-      <li><a routerLink="Rules" class="pages">Rules</a></li>
+      <li><a routerLink="" ><h2  id="Brand-Name"> {{ title }} </h2></a></li>
+      <li><a routerLink="About" [routerLinkActive]="['active']" class="pages">About</a></li>
+      <li><a class="pages" [routerLinkActive]="['active']">Search</a></li>
+      <li><a routerLink="Rules" class="pages" [routerLinkActive]="['active']">Rules</a></li>
     </ul>
     <a routerLink="" id="Post-Button">POST</a>
   </nav>
