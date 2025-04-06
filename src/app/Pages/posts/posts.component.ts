@@ -1,9 +1,11 @@
-import {Component, createComponent} from '@angular/core';
+import {Component, AfterViewInit, inject, Host, HostListener} from '@angular/core';
 import {NgForOf} from '@angular/common';
 import {PostCreationComponent} from './Components/post-creation/post-creation.component';
 import {PostComponent} from './Components/post/post.component';
 import {PostData} from '../../post-data';
 import {FormGroup} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {PostService} from '../../postings/post.service';
 
 @Component({
   selector: 'app-posts',
@@ -12,6 +14,9 @@ import {FormGroup} from '@angular/forms';
   styleUrl: './posts.component.css'
 })
 export class PostsComponent {
+  private http = inject(HttpClient);
+  public posts = inject(PostService);
+
 
   testData = {
     id: 0,
@@ -21,15 +26,30 @@ export class PostsComponent {
     nsfw: false,
   }
 
-  id=0
 
-  shownPosts:PostData[] = [
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll() {
+    const scrollTop = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    console.log("WindowHeight: "+windowHeight);
+    console.log("ScrollTop: "+scrollTop);
+    console.log("DocumentHeight: "+documentHeight);
 
-  ];
+    if (scrollTop + windowHeight >= documentHeight - 40) {
+      // Near bottom of page (10px threshold)
+      this.posts.getPosts();
+    }
+  };
+
+
+  id = 0
+
+  shownPosts: PostData[] = [];
 
   onFormInteraction(formData: FormGroup) {
-    let postContents:PostData = {
-      id: this.id,
+    let postContents: PostData = {
+      id: this.posts.posts[0].id+1,
       creationDate: new Date(),
       displayName: formData.value.displayName,
       message: formData.value.message,
@@ -38,10 +58,20 @@ export class PostsComponent {
     if (postContents.displayName === "" || postContents.displayName === null) {
       postContents.displayName = "Anonymous";
     }
-    this.id+=1
-    this.shownPosts.unshift(postContents);
+    this.id += 1
+    this.posts.posts.unshift(postContents);
+    this.posts.sendPost(postContents);
   };
 
+  ngAfterViewInit(): void {
+
+  }
+
+  constructor() {
+    if (this.posts.posts.length == 0) {
+      this.posts.getNewestPosts()
+    }
+  }
 
 }
 

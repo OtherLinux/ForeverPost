@@ -1,5 +1,6 @@
-import {Component, ElementRef, Output, viewChild, EventEmitter} from '@angular/core';
+import {Component, ElementRef, Output, viewChild, EventEmitter, inject,} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-post-creation',
@@ -16,7 +17,6 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
         <textarea (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)" placeholder="Text goes here..."
                   id="MessageContents" style="resize: none" maxlength="256" formControlName="message"></textarea>
 
-
       </div>
 
       <button type="submit">Post</button>
@@ -26,6 +26,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   styleUrl: './post-creation.component.css'
 })
 export class PostCreationComponent {
+
   isExpanded = false;
   holders = 0;
   postCreation = new FormGroup({
@@ -49,7 +50,6 @@ export class PostCreationComponent {
     if (this.postCreation.valid) {
       this.formHandling.emit(this.postCreation);
       this.postCreation.reset()
-
     }
   }
 
