@@ -1,6 +1,6 @@
 <section class="Post" (mouseover)="onFormInteraction(1)"
          (mouseout)="onFormInteraction(-1)" [class.PostCreationExpand]="isExpanded">
-  <div>
+  <div class="shadow-lg bg-black">
     <article>
       <span (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
           class="DisplayName"> {{ postData.displayName }}</span>

@@ -3,5 +3,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem 4rem;
-  padding: 20px;
+  width: 100%;
+}
+
+@media (max-width: 1023px) {
+  #Posts {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
 }

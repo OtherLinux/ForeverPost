@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
   selector: 'app-post-creation',
   imports: [ReactiveFormsModule],
   template: `
-    <form id="PostCreationForm" [formGroup]="postCreation" [class.PostCreationExpand]="isExpanded" autocomplete="off"
+    <form id="PostCreationForm" [formGroup]="postCreation" [class.PostCreationExpand]="isExpanded"  autocomplete="off"
           (ngSubmit)="onFormSend()" (mouseover)="onFormInteraction(1)"
           (mouseout)="onFormInteraction(-1)">
       <div>

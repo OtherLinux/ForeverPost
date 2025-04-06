@@ -32,9 +32,6 @@ export class PostsComponent {
     const scrollTop = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
-    console.log("WindowHeight: "+windowHeight);
-    console.log("ScrollTop: "+scrollTop);
-    console.log("DocumentHeight: "+documentHeight);
 
     if (scrollTop + windowHeight >= documentHeight - 40) {
       // Near bottom of page (10px threshold)
@@ -59,7 +56,6 @@ export class PostsComponent {
       postContents.displayName = "Anonymous";
     }
     this.id += 1
-    this.posts.posts.unshift(postContents);
     this.posts.sendPost(postContents);
   };
 

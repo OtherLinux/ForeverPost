@@ -2,9 +2,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  justify-self: center;
   flex-direction: column;
   border: #a1a3a8 solid 1px;
+
   padding: 24px 24px 24px 24px;
+  width: 75%;
+  height: 20rem;
+  transition: 500ms all;
+
   margin: 16px;
   border-radius: 10px;
   box-shadow: none;
@@ -30,7 +36,8 @@
       position: relative;
       margin-left: 12px;
       height: 1.5rem;
-      width: 16rem;
+      text-wrap: wrap;
+      width: 45%;
       padding: 6px;
 
       background: none;
@@ -48,8 +55,8 @@
       margin-top: 12px;
       margin-left: 12px;
       padding: 6px;
-      width: 32rem;
-      height: 9.5rem;
+      width: 95%;
+      height: 50%;
 
       font-weight: 400;
 
@@ -75,13 +82,33 @@
     height: 3rem;
   }
 
-  width: 35rem;
-  height: 17.5rem;
-  transition: 500ms all;
 }
 
 .PostCreationExpand {
   box-shadow: #313338 5px 10px 10px !important;
   width: 36rem !important;
   height: 18rem !important;
+}
+
+@media (max-width: 1023px) {
+  .Post {
+    margin: 0;
+    article {
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-direction: column;
+      span {
+        font-size: .9rem !important;
+        width: 100% !important;
+        margin-left: 12px !important;
+      }
+
+    }
+    .MessageContents {
+      margin: 0 !important;
+    }
+    .CreationDate {
+      margin-top: 48px !important;
+    }
+  }
 }

@@ -95,3 +95,31 @@ header {
   margin-top: 0rem;
   padding-top: 10rem;
 }
+
+@media (max-width: 1023px) {
+  header {
+    position: relative;
+  }
+
+  nav {
+    #Left-Nav-Bar {
+      display: flex;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      margin: 0 !important;
+      padding: 0rem;
+    }
+
+
+
+    #Post-Button {
+      display: none;
+    }
+  }
+  #Content-Display {
+      padding: 0 !important;
+
+    }
+}
