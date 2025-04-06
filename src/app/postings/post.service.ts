@@ -13,6 +13,7 @@ export class PostService {
   private newestid: number = 0;
   private fetching = false;
   private updating = false;
+  private backendUrl = 'http://127.0.0.1:8000/api/';
   public posts: PostData[] = []
 
   private convertDatabaseType(DTO: PostDataDTO): PostData { //converts the database format into the format used in the apllication
@@ -27,16 +28,15 @@ export class PostService {
       id: DTO.id,
       creationDate: new Date(DTO.created_at)
     };
-
-
   }
+
 
   async getPosts(): Promise<void> {
     if ((this.bottompostid < 1 || this.fetching)) {
       return;
     }
     this.fetching = true;
-    const data = this.http.get<PostDataDTO[]>('http://127.0.0.1:8000/api/from/' + this.bottompostid + '/to/' + (this.bottompostid - 10), {}
+    const data = this.http.get<PostDataDTO[]>(this.backendUrl+'from/' + this.bottompostid + '/to/' + (this.bottompostid - 10), {}
     )
     data.subscribe(res => {
       this.fetching = false;
@@ -57,7 +57,7 @@ export class PostService {
     }
     console.log(`Updating...`);
     this.updating = true;
-    const data = this.http.get<PostDataDTO[]>('http://127.0.0.1:8000/api/from/' + (this.newestid + 10) + '/to/' + (this.newestid+1), {}
+    const data = this.http.get<PostDataDTO[]>(this.backendUrl+'from/' + (this.newestid + 10) + '/to/' + (this.newestid+1), {}
     )
     data.subscribe(res => {
       this.updating = false;
@@ -74,7 +74,7 @@ export class PostService {
   }
 
   async getNewestPosts(): Promise<void> {
-    const data = this.http.get<PostDataDTO[]>('http://127.0.0.1:8000/api/getnewestposts', {})
+    const data = this.http.get<PostDataDTO[]>(this.backendUrl+'getnewestposts', {})
       .subscribe(res => {
         this.bottompostid = res[0].highest_id - 11;
         this.newestid = res[0].highest_id;
@@ -89,7 +89,7 @@ export class PostService {
 
 
   async sendPost(post: PostData) {
-    this.http.post('http://127.0.0.1:8000/api/post', post).subscribe();
+    this.http.post(this.backendUrl+'post', post).subscribe();
   };
 
   constructor() {
