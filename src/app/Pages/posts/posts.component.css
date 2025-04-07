@@ -6,9 +6,15 @@
   width: 100%;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1400px) {
   #Posts {
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
   }
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }

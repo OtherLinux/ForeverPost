@@ -7,7 +7,7 @@
   border: #a1a3a8 solid 1px;
 
   padding: 24px 24px 24px 24px;
-  width: 75%;
+  width: 35rem;
   height: 20rem;
   transition: 500ms all;
 
@@ -93,6 +93,7 @@
 @media (max-width: 1023px) {
   .Post {
     margin: 0;
+    width: 75%;
     article {
       align-items: flex-start;
       justify-content: flex-start;
