@@ -13,7 +13,7 @@ export class PostService {
   private newestid: number = 0;
   private fetching = false;
   private updating = false;
-  private backendUrl = 'http://127.0.0.1:8000/api/';
+  private backendUrl = 'http://13.60.223.33/api/';
   public posts: PostData[] = []
 
   private convertDatabaseType(DTO: PostDataDTO): PostData { //converts the database format into the format used in the apllication

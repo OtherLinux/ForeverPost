@@ -46,7 +46,7 @@ export class PostsComponent {
 
   onFormInteraction(formData: FormGroup) {
     let postContents: PostData = {
-      id: this.posts.posts[0].id+1,
+      id: 0,
       creationDate: new Date(),
       displayName: formData.value.displayName,
       message: formData.value.message,
@@ -55,7 +55,6 @@ export class PostsComponent {
     if (postContents.displayName === "" || postContents.displayName === null) {
       postContents.displayName = "Anonymous";
     }
-    this.id += 1
     this.posts.sendPost(postContents);
   };
 
