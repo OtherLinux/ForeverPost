@@ -9,10 +9,10 @@ import {config, Observable, retry} from 'rxjs';
 })
 export class PostService {
   private http = inject(HttpClient);
-  private bottompostid: number = 0;
-  private newestid: number = 0;
-  private fetching = false;
-  private updating = false;
+  private bottompostid: number = 0; //is used to load older content
+  private newestid: number = 0; //is used to load new content
+  private fetching = false; //is used to prevent double loading
+  private updating = false; //is used to prevent double loading
   private backendUrl = 'https://api.cuprum.uk/api/';
   public posts: PostData[] = []
   public found_post: PostData = {
@@ -38,7 +38,7 @@ export class PostService {
   }
 
 
-  async getPosts(): Promise<void> {
+  async getPosts(): Promise<void> {//gets posts within a predefined range
     if ((this.bottompostid < 1 || this.fetching)) {
       return;
     }
@@ -58,7 +58,7 @@ export class PostService {
     });
   }
 
-  async updatePosts(): Promise<void> {
+  async updatePosts(): Promise<void> { //is used to get new posts
     if ((this.newestid < 1 || this.updating)) {
       return;
     }
@@ -79,8 +79,8 @@ export class PostService {
 
     });
   }
-
-  async getNewestPosts(): Promise<void> {
+  // inconvenience
+  async getNewestPosts(): Promise<void> { //is used to get the first ten posts
     const data = this.http.get<PostDataDTO[]>(this.backendUrl + 'getnewestposts', {})
       .subscribe(res => {
         this.bottompostid = res[0].highest_id - 11;
@@ -94,7 +94,7 @@ export class PostService {
     }, 3000)
   }
 
-  async findPost(postId: number): Promise<void> {
+  async findPost(postId: number): Promise<void> { //is used to search for posts
     const data = this.http.get<PostDataDTO>(this.backendUrl + 'search/' + postId, {})
       .subscribe(res => {
         if (res !== null) {
@@ -103,7 +103,7 @@ export class PostService {
       });
   }
 
-  async sendPost(post: PostData) {
+  async sendPost(post: PostData) { //is used to send a post to the backend
     this.http.post(this.backendUrl + 'post', post).subscribe();
   };
 

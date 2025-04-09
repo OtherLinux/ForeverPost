@@ -4,7 +4,6 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {PostData} from '../../post-data';
 import {PostComponent} from '../posts/Components/post/post.component';
 import {Router} from '@angular/router';
-import {routes} from '../../app.routes';
 
 @Component({
   selector: 'app-search',
@@ -17,12 +16,32 @@ import {routes} from '../../app.routes';
   styleUrl: './search.component.css'
 })
 export class SearchComponent {
-  public posts = inject(PostService);
+  public posts: PostService = inject(PostService);
   private router: Router = inject(Router);
 
   searchForm = new FormGroup({
-    searchId: new FormControl(1, Validators.required),
+    searchId: new FormControl(0, Validators.required),
   });
+
+  @Input()
+  set id(postId: number) { //searches for the id in /search/:id
+    if (!isNaN(Number(postId))) {
+      this.posts.findPost(<number>postId)
+      this.searchForm.setValue({searchId: postId})
+    } else {
+      this.posts.found_post = {
+        id: 0,
+        creationDate:
+          new Date(),
+        nsfw:
+          false,
+        message:
+          "Search by using the post ID",
+        displayName:
+          "Tip"
+      }
+    }
+  }
 
   onSubmit() {
     if (!isNaN(Number(this.searchForm.value.searchId))) {
@@ -30,20 +49,4 @@ export class SearchComponent {
     }
 
   }
-
-  @Input()
-  set id(postId: number) {
-    if (!isNaN(Number(postId))) {
-      this.posts.findPost(<number>postId)
-    }
-  }
-
-  isExpanded = false;
-  holders = 0;
-
-  onFormInteraction(add: number) {
-    this.holders += add;
-    this.isExpanded = this.holders > 0;
-    this.isExpanded = false;
-  };
 }
