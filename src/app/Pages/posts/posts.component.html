@@ -8,9 +8,11 @@
   <title>Title</title>
 </head>
 <body>
-<app-post-creation (formHandling)="onFormInteraction($event)" ></app-post-creation>
-<section id="Posts">
-  <app-post *ngFor="let post of posts.posts" [postData]="post"></app-post>
-</section>
+<div id="Posts">
+  <app-post-creation (formHandling)="onFormInteraction($event)"></app-post-creation>
+  <section id="Showcase">
+    <app-post *ngFor="let post of posts.posts" [postData]="post"></app-post>
+  </section>
+</div>
 </body>
 </html>
