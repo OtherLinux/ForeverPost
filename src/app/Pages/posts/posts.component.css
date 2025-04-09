@@ -4,7 +4,7 @@
   grid-template-columns: 1fr 1fr;
   justify-content: center;
   gap: 1rem 4rem;
-  width: 100%;
+  width: 100vw;
 }
 
 
