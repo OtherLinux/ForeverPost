@@ -7,6 +7,7 @@ section {
   margin-top: 4rem !important;
   margin-bottom: 4rem !important;
 
+
   h1 {
     font-size: 6rem;
     margin: 1rem;
@@ -46,7 +47,7 @@ section {
       }
 
       transition: 150ms all;
-      height: 90%;
+      height: 120%;
       padding: 1rem;
       border-radius: 10px;
       background: rgba(0, 0, 0, 0.5);
