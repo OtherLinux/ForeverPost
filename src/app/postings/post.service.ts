@@ -13,8 +13,15 @@ export class PostService {
   private newestid: number = 0;
   private fetching = false;
   private updating = false;
-  private backendUrl = 'https://api.cuprum.uk/api/';
+  private backendUrl = 'http://127.0.0.1:8000/api/';
   public posts: PostData[] = []
+  public found_post: PostData = {
+    id: 0,
+    creationDate: new Date(),
+    nsfw: false,
+    message: "Search by using the post ID",
+    displayName: "Tip"
+  }
 
   private convertDatabaseType(DTO: PostDataDTO): PostData { //converts the database format into the format used in the apllication
     let nsfw = false
@@ -36,7 +43,7 @@ export class PostService {
       return;
     }
     this.fetching = true;
-    const data = this.http.get<PostDataDTO[]>(this.backendUrl+'from/' + this.bottompostid + '/to/' + (this.bottompostid - 10), {}
+    const data = this.http.get<PostDataDTO[]>(this.backendUrl + 'from/' + this.bottompostid + '/to/' + (this.bottompostid - 10), {}
     )
     data.subscribe(res => {
       this.fetching = false;
@@ -57,7 +64,7 @@ export class PostService {
     }
     console.log(`Updating...`);
     this.updating = true;
-    const data = this.http.get<PostDataDTO[]>(this.backendUrl+'from/' + (this.newestid + 10) + '/to/' + (this.newestid+1), {}
+    const data = this.http.get<PostDataDTO[]>(this.backendUrl + 'from/' + (this.newestid + 10) + '/to/' + (this.newestid + 1), {}
     )
     data.subscribe(res => {
       this.updating = false;
@@ -74,7 +81,7 @@ export class PostService {
   }
 
   async getNewestPosts(): Promise<void> {
-    const data = this.http.get<PostDataDTO[]>(this.backendUrl+'getnewestposts', {})
+    const data = this.http.get<PostDataDTO[]>(this.backendUrl + 'getnewestposts', {})
       .subscribe(res => {
         this.bottompostid = res[0].highest_id - 11;
         this.newestid = res[0].highest_id;
@@ -82,14 +89,22 @@ export class PostService {
           this.posts.push(this.convertDatabaseType(post));
         }
       });
-    setInterval(()=>{
+    setInterval(() => {
       this.updatePosts()
-    },3000)
+    }, 3000)
   }
 
+  async findPost(postId: number): Promise<void> {
+    const data = this.http.get<PostDataDTO>(this.backendUrl + 'search/' + postId, {})
+      .subscribe(res => {
+        if (res !== null) {
+          this.found_post = this.convertDatabaseType(res)
+        }
+      });
+  }
 
   async sendPost(post: PostData) {
-    this.http.post(this.backendUrl+'post', post).subscribe();
+    this.http.post(this.backendUrl + 'post', post).subscribe();
   };
 
   constructor() {

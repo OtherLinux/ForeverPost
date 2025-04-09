@@ -94,9 +94,10 @@
   .Post {
     margin: 0;
     width: 75%;
+    align-self: center;
     article {
-      align-items: flex-start;
-      justify-content: flex-start;
+      align-items: center;
+      justify-content: center;
       flex-direction: column;
       span {
         font-size: .9rem !important;

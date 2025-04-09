@@ -1,4 +1,8 @@
-<form>
-  <label for="SearchID">ID:</label>
-  <input id="SearchID" >
-</form>
+<div id="SearchHolder">
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <label for="SearchID" >Search</label>
+    <input formControlName="searchId" id="SearchID">
+  </form>
+
+  <app-post style="margin-top: 3rem" [postData]="this.posts.found_post"></app-post>
+</div>
