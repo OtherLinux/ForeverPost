@@ -1,8 +1,10 @@
 <div id="SearchHolder">
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-    <label for="SearchID" >Search</label>
+    <label for="SearchID">Search</label>
     <input formControlName="searchId" id="SearchID">
   </form>
+  <div>
 
-  <app-post style="margin-top: 3rem; width: 75%" id="Result" [postData]="this.posts.found_post"></app-post>
+    <app-post style="margin-top: 3rem" id="Result" [postData]="this.posts.found_post"></app-post>
+  </div>
 </div>

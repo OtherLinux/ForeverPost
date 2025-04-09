@@ -96,7 +96,7 @@
 @media (max-width: 1023px) {
   #PostCreationForm {
     margin-bottom: 3rem !important;
-    width: 75% !important;
+    width: 65vw !important;
     article {
       align-items: flex-start;
       justify-content: flex-start;

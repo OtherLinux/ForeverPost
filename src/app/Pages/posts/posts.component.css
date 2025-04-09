@@ -2,22 +2,25 @@
   justify-self: center;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-content: center;
+  justify-items: center;
+  align-items: center;
   gap: 1rem 4rem;
   width: 100vw;
 }
-
 
 
 @media (max-width: 1400px) {
   #Showcase {
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
+    justify-items: center;
+    align-items: center;
   }
 }
 
 #Posts {
   display: flex;
-  justify-content: center;
+  justify-items: center;
+  align-items: center;
   flex-direction: column;
 }
