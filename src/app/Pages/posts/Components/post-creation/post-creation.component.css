@@ -71,6 +71,7 @@
     height: 3rem;
     background: white;
     border: white solid 4px;
+    color: black;
     cursor: pointer;
     transition: 0.25s;
   }

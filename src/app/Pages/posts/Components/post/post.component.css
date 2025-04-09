@@ -24,6 +24,7 @@
     flex-direction: column;
     align-items: flex-start;
     letter-spacing: 1px;
+
     article {
       display: flex;
 
