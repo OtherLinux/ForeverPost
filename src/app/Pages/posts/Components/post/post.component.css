@@ -99,17 +99,22 @@
       justify-content: center;
       flex-direction: column;
       span {
-        font-size: .9rem !important;
+        font-size: .86rem !important;
         width: 100% !important;
-        margin-left: 12px !important;
+        margin-left: 0px !important;
       }
 
     }
     .MessageContents {
       margin: 0 !important;
+      padding-left: 0 !important;
+      margin-top: 6px !important;
     }
     .CreationDate {
       margin-top: 48px !important;
+    }
+    .PostLineBreak {
+      display: none;
     }
   }
 }

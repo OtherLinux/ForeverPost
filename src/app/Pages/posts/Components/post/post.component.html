@@ -7,7 +7,7 @@
       <span class="PostId">ID: {{postData.id}}</span>
 
     </article>
-    <br>
+    <br class="PostLineBreak">
     <p (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
           class="MessageContents" [textContent]="postData.message"> </p>
     <br>
