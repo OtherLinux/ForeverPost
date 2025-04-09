@@ -3,6 +3,8 @@ import {PostService} from '../../postings/post.service';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {PostData} from '../../post-data';
 import {PostComponent} from '../posts/Components/post/post.component';
+import {Router} from '@angular/router';
+import {routes} from '../../app.routes';
 
 @Component({
   selector: 'app-search',
@@ -16,6 +18,7 @@ import {PostComponent} from '../posts/Components/post/post.component';
 })
 export class SearchComponent {
   public posts = inject(PostService);
+  private router: Router = inject(Router);
 
   searchForm = new FormGroup({
     searchId: new FormControl(1, Validators.required),
@@ -23,7 +26,15 @@ export class SearchComponent {
 
   onSubmit() {
     if (!isNaN(Number(this.searchForm.value.searchId))) {
-      this.posts.findPost(<number>this.searchForm.value.searchId)
+      this.router.navigate(['/search/' + <number>this.searchForm.value.searchId]);
+    }
+
+  }
+
+  @Input()
+  set id(postId: number) {
+    if (!isNaN(Number(postId))) {
+      this.posts.findPost(<number>postId)
     }
   }
 

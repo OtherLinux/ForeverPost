@@ -12,6 +12,7 @@ export const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'rules', component: RulesComponent},
   {path: 'search', component: SearchComponent},
+  {path: 'search/:id', component: SearchComponent},
   {path: '**', component:Page404Component}
 
 ];
