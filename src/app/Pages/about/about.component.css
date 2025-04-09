@@ -4,6 +4,8 @@ section {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 4rem !important;
+  margin-bottom: 4rem !important;
 
   h1 {
     font-size: 6rem;
@@ -11,44 +13,63 @@ section {
   }
 
   section {
-    padding: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    margin: 0;
+    align-items: center !important;
     gap: 4rem;
     position: relative;
-    width: 80%;
-  height: 20rem;
+    width: 90%;
+
     article {
       backdrop-filter: none;
+
       img {
         position: relative;
         width: 4rem;
         height: 4rem;
       }
+
       div {
         display: flex;
         flex-direction: row;
         font-size: 2rem;
         margin-bottom: 1rem;
+
         h2 {
           margin: 0rem;
         }
       }
+
       span {
         font-size: 1.4rem;
       }
+
       transition: 150ms all;
-      width: 90%;
-      height: 75%;
+      height: 90%;
       padding: 1rem;
       border-radius: 10px;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0, 0, 0, 0.5);
       border: 1px solid darkgray;
     }
+
     article:hover {
       backdrop-filter: blur(5px);
     }
   }
+
   #why {
+  }
+}
+
+@media (max-width: 1023px) {
+  section {
+    section {
+      grid-template-columns: 1fr !important;
+
+      article {
+        height: 100% !important;
+      }
+    }
   }
 }
