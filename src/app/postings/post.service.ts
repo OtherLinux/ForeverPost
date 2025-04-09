@@ -13,7 +13,7 @@ export class PostService {
   private newestid: number = 0;
   private fetching = false;
   private updating = false;
-  private backendUrl = 'http://127.0.0.1:8000/api/';
+  private backendUrl = 'https://api.cuprum.uk/api/';
   public posts: PostData[] = []
   public found_post: PostData = {
     id: 0,
