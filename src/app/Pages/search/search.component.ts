@@ -20,14 +20,14 @@ export class SearchComponent {
   private router: Router = inject(Router);
 
   searchForm = new FormGroup({
-    searchId: new FormControl(0, Validators.required),
+    searchId: new FormControl('', Validators.required),
   });
 
   @Input()
   set id(postId: number) { //searches for the id in /search/:id
     if (!isNaN(Number(postId))) {
       this.posts.findPost(<number>postId)
-      this.searchForm.setValue({searchId: postId})
+      this.searchForm.setValue({searchId: String(postId)})
     } else {
       this.posts.found_post = {
         id: 0,
@@ -45,7 +45,7 @@ export class SearchComponent {
 
   onSubmit() {
     if (!isNaN(Number(this.searchForm.value.searchId))) {
-      this.router.navigate(['/search/' + <number>this.searchForm.value.searchId]);
+      this.router.navigate(['/search/' + this.searchForm.value.searchId]);
     }
 
   }
