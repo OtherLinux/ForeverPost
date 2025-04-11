@@ -14,7 +14,7 @@
       <li><a routerLink="" ><h2  id="Brand-Name"> {{ title }} </h2></a></li>
       <li><a routerLink="about" [routerLinkActive]="['active']" class="pages">About</a></li>
       <li><a routerLink="search" class="pages" [routerLinkActive]="['active']">Search</a></li>
-      <li><a routerLink="rules" class="pages" [routerLinkActive]="['active']">Rules</a></li>
+      <li><a class="pages" style="cursor: pointer" [routerLinkActive]="['active']" (click)="getRandomPost()">Random Post</a></li>
     </ul>
     <a routerLink="" id="Post-Button">POST</a>
   </nav>
