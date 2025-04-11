@@ -3,13 +3,13 @@
   <div class="shadow-lg bg-black">
     <article>
       <span (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
-          class="DisplayName"> {{ postData.displayName }}</span>
+          class="DisplayName" [style]="style_tag"> {{ postData.displayName }}</span>
       <span class="PostId">ID: {{postData.id}}</span>
 
     </article>
     <br class="PostLineBreak">
     <p (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
-          class="MessageContents" [textContent]="postData.message"> </p>
+          class="MessageContents" [textContent]="postData.message" > </p>
     <br>
     <span class="CreationDate">Created on: {{postData.creationDate.toDateString()}}</span>
   </div>
