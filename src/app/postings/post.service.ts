@@ -1,8 +1,6 @@
 import {inject, Injectable} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {PostData, PostDataDTO} from '../post-data';
-import {PostsComponent} from '../Pages/posts/posts.component';
-import {config, Observable, retry} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +11,8 @@ export class PostService {
   private newestid: number = 0; //is used to load new content
   private fetching = false; //is used to prevent double loading
   private updating = false; //is used to prevent double loading
-  private backendUrl = 'https://api.cuprum.uk/api/';
+  private debug= false
+  private backendUrl = this.debug ? 'http://127.0.0.1:8000/api/': 'https://api.cuprum.uk/api/';
   public posts: PostData[] = []
   public found_post: PostData = {
     id: 0,

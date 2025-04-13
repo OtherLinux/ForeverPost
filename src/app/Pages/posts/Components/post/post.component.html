@@ -9,7 +9,7 @@
     </article>
     <br class="PostLineBreak">
     <p (focus)="onFormInteraction(1)" (focusout)="onFormInteraction(-1)"
-          class="MessageContents" [textContent]="postData.message" > </p>
+          class="MessageContents" (click)='onIdClick($event)' [innerHTML]="postData.message | linkToMessage"></p>
     <br>
     <span class="CreationDate">Created on: {{postData.creationDate.toDateString()}}</span>
   </div>
