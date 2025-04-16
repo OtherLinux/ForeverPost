@@ -11,8 +11,8 @@ export class PostService {
   private newestid: number = 0; //is used to load new content
   private fetching = false; //is used to prevent double loading
   private updating = false; //is used to prevent double loading
-  private debug= false
-  private backendUrl = this.debug ? 'http://127.0.0.1:8000/api/': 'https://api.cuprum.uk/api/';
+  private debug = true
+  private backendUrl = this.debug ? 'http://127.0.0.1:8000/api/' : 'https://api.cuprum.uk/api/';
   public posts: PostData[] = []
   public found_post: PostData = {
     id: 0,
@@ -54,6 +54,9 @@ export class PostService {
       }
       this.bottompostid -= 11;
 
+    }, err => {
+      console.error(err);
+      this.fetching = false;
     });
   }
 
@@ -76,18 +79,24 @@ export class PostService {
         console.log(this.newestid);
       }
 
+    }, err => {
+      console.error(err);
+      this.updating = false;
     });
   }
+
   // inconvenience
   async getNewestPosts(): Promise<void> { //is used to get the first ten posts
     const data = this.http.get<PostDataDTO[]>(this.backendUrl + 'getnewestposts', {})
-      .subscribe(res => {
-        this.bottompostid = res[0].highest_id - 11;
-        this.newestid = res[0].highest_id;
-        for (const post of res.reverse()) {
-          this.posts.push(this.convertDatabaseType(post));
-        }
-      });
+    data.subscribe(res => {
+      this.bottompostid = res[0].highest_id - 11;
+      this.newestid = res[0].highest_id;
+      for (const post of res.reverse()) {
+        this.posts.push(this.convertDatabaseType(post));
+      }
+    }, err => {
+      console.error(err);
+    });
     setInterval(() => {
       this.updatePosts()
     }, 3000)
@@ -95,11 +104,13 @@ export class PostService {
 
   async findPost(postId: number): Promise<void> { //is used to search for posts
     const data = this.http.get<PostDataDTO>(this.backendUrl + 'search/' + postId, {})
-      .subscribe(res => {
-        if (res !== null) {
-          this.found_post = this.convertDatabaseType(res)
-        }
-      });
+    data.subscribe(res => {
+      if (res !== null) {
+        this.found_post = this.convertDatabaseType(res)
+      }
+    }, err => {
+      console.log(err);
+    });
   }
 
   async sendPost(post: PostData) { //is used to send a post to the backend
